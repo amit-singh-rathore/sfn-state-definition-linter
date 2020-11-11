@@ -1,0 +1,94 @@
+{
+    "$id": "map.json#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "Type": {
+        "type": "string",
+        "pattern": "^Map$"
+      },
+      "Next": {
+        "type": "string"
+      },
+      "End": {
+        "enum": [true]
+      },
+      "Comment": {
+        "type": "string"
+      },
+      "InputPath": {
+        "type": ["string", "null"]
+      },
+      "OutputPath": {
+        "type": ["string", "null"]
+      },
+      "Catch": {
+        "type": "array",
+        "items": {
+          "types": "object",
+          "properties": {
+            "ErrorEquals": {
+              "type": "array",
+              "items": {
+                "types": "string"
+              }
+            },
+            "Next": {
+              "type": "string"
+            }
+          },
+          "required": ["ErrorEquals", "Next"]
+        }
+      },
+      "ItemsPath": {
+        "type": ["string", "null"]
+      },
+      "Iterator": {
+        "$ref": "state-machine.json#"
+      },
+      "MaxConcurrency": {
+        "type": "number",
+        "minimum": 0
+      },
+      "Parameters": {
+        "type": "object"
+      },
+      "ResultPath": {
+        "type": ["string", "null"]
+      },
+      "Retry": {
+        "type": "array",
+        "items": {
+          "types": "object",
+          "properties": {
+            "ErrorEquals": {
+              "type": "array",
+              "items": {
+                "types": "string"
+              }
+            },
+            "IntervalSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "MaxAttempts": {
+              "type": "number",
+              "minimum": 0
+            },
+            "BackoffRate": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": ["ErrorEquals"]
+        }
+      }
+    },
+    "oneOf": [{
+      "required": ["Next"]
+    }, {
+      "required": ["End"]
+    }],
+    "required": ["Type", "Iterator"],
+    "additionalProperties": false
+  }

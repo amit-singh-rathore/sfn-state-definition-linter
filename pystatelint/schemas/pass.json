@@ -1,0 +1,42 @@
+{
+    "$id": "pass.json#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "Type": {
+        "type": "string",
+        "pattern": "^Pass$"
+      },
+      "Next": {
+        "type": "string"
+      },
+      "End": {
+        "enum": [true]
+      },
+      "Comment": {
+        "type": "string"
+      },
+      "InputPath": {
+        "type": ["string", "null"]
+      },
+      "OutputPath": {
+        "type": ["string", "null"]
+      },
+      "Parameters": {
+        "type": "object"
+      },
+      "Result": {
+        "type": "object"
+      },
+      "ResultPath": {
+        "type": ["string", "null"]
+      }
+  },
+  "oneOf": [{
+    "required": ["Next"]
+  }, {
+    "required": ["End"]
+  }],
+  "required": ["Type"],
+  "additionalProperties": false
+}
